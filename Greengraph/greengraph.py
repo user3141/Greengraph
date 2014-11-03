@@ -9,8 +9,8 @@ from itertools import izip
 from numpy import linspace
 from StringIO import StringIO
 import matplotlib
-import matplotlib.pyplot as plt
 matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 ########################################
 
