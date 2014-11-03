@@ -14,15 +14,17 @@ import matplotlib.pyplot as plt
 
 ########################################
 
-geocoder = geopy.geocoders.GoogleV3(domain="maps.google.co.uk")
 def geolocate(place):
-  return geocoder.geocode(place,exactly_one=False)[0][1]
+  """Return latitude and longitude of a place."""
+  geocoder = geopy.geocoders.GoogleV3(domain="maps.google.co.uk")
+  return geocoder.geocode(place, exactly_one=False)[0][1]
 
 london_location = geolocate("London")
 print london_location
 
 ### "URL"
 def map_at(lat, long, satellite=False, zoom=12, size=(400,400), sensor=False):
+  """Get static map from google maps."""
     base = "http://maps.googleapis.com/maps/api/staticmap?"
     params = dict(
         sensor=str(sensor).lower(),
@@ -40,10 +42,12 @@ print url
 
 ### "png"
 def is_green(r, g, b):
+  """Is pixel green?"""
   threshold = 1.1
   return g > r*threshold and g > b*threshold
 
 def count_green_in_png(data):
+    """Count the number of green pixels in static map."""
     image = png.Reader(file=StringIO(data.content)).asRGB()
     count = 0
     for row in image[2]:
@@ -56,6 +60,7 @@ print count_green_in_png(map_at(*london_location))
 
 ### "visualise"
 def show_green_in_png(data):
+    """Show only green parts of map"""
     image = png.Reader(file=StringIO(data.content)).asRGB()
     count = 0
     out = []
