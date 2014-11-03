@@ -1,6 +1,8 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
-setup(name='Greengraph',
-      version='0.1',
-      description='Green space between two places.',
-      packages=['Greengraph'])
+setup(name = 'Greengraph',
+      version = '0.1',
+      description = 'Green space between London and Birmingham.',
+      packages = find_packages(exclude=['test*'])),
+      install_requires = ['geopy', 'requests', 'pypng', 'numpy', 'matplotlib', 'StringIO', 'url', 'itertools'],
+      scripts = ['scripts/greengraph'])
